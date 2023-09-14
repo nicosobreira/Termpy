@@ -1,0 +1,1 @@
+ANALISADOS = ('baixa', 'lacos', 'mostr')
