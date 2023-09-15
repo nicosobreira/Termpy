@@ -1,32 +1,30 @@
-from lib.pastas import *
+from libAnalisador.pastas import *
 
 
-bancoDados_caminho = bancoDadosUsuário()
-formatado_caminho = formatadoPergunta()
+def main():
+    bancoDados_caminho = bancoDadosUsuário()
+    formatado_caminho = formatadoPergunta()
+
+    with open(bancoDados_caminho, 'r') as bancoDados_arquivo, open(formatado_caminho, 'a+') as formatado_arquivo:  # r+ -> r
+        formatado_arquivo.write('ANALISADOS = (')
+
+        bancoDados_LINHAS = bancoDados_arquivo.readlines()
+        bancoDados_TERMOS = []
+        for linha in bancoDados_LINHAS:
+            linha = linha.strip().upper()
+            if len(linha) == 5:
+                bancoDados_TERMOS.append(linha)
+
+        for termo in bancoDados_TERMOS:
+            if termo == bancoDados_TERMOS[-1]:
+                escrever = ')'
+            else:
+                escrever = ', '
+            formatado_arquivo.write(f"'{termo}'{escrever}")
 
 
-with open(formatado_caminho, 'a') as formatado:
-    formatado.write('ANALISADOS = (')
+if __name__ == '__main__':
+    main()
 
-
-linhas_termos = []
-with open(bancoDados_caminho, 'r+') as bancoDados:
-    LINHAS = bancoDados.readlines()
-    for linha in LINHAS:
-        linha = linha.strip().upper()
-        if len(linha) == 5:
-            linhas_termos.append(linha)
-
-
-with open(formatado_caminho, 'a+') as formatado:
-    for linha in linhas_termos:
-        formatado.write(f"'{linha}'")
-        if linha == linhas_termos[-1]:
-            formatado.write(')')
-        else:
-            formatado.write(', ')
-
-
-print('Finalizado!')
-print('Arquivo criado com sucesso')
-print('Volte Sempre!')
+    print('Finalizado!')
+    print('Arquivo criado com sucesso')

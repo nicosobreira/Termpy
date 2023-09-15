@@ -14,13 +14,13 @@ def pergunta(texto=''):
             return usr_input
 
 
-def exibeLista(lista, partida):
+def exibePartida(lista, partida):
     limpaTerminal()
     mostrar(f' -- Termpy, {partida}ª partida --', '~', 30)
 
     for índex, elemento in enumerate(lista):
         índex += 1
-        print(f'{elemento} - {índex}')
+        print(f'{elemento} - {cores(índex, "Azul")}')
 
 
 def linha(tipo_linha='-', tamanho_linha=30):
@@ -39,10 +39,11 @@ def cores(texto, cor):
         'Normal': '\033[m',
         'Verde': '\033[32m',
         'Amarelo': '\033[33m',
-        'Vermelho': '\033[31m'
+        'Vermelho': '\033[31m',
+        'Azul': '\033[34m'
     }
 
-    return f"{CORES[cor]}{texto} {CORES['Normal']}"
+    return f"{CORES[cor]}{texto}{CORES['Normal']}"
 
 
 def limpaTerminal():

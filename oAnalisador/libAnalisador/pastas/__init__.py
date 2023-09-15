@@ -1,4 +1,4 @@
-from lib.strings import *
+from libAnalisador.strings import *
 
 
 def diretórioAtual():

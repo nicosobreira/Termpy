@@ -1,9 +1,10 @@
-from lib.formatação import *
-from lib.jogo import *
+from libTermpy.formatação import *
+from libTermpy.jogo import *
 
 
 partida = 0
 continuação = ''
+
 
 tutorial()
 while True:
@@ -15,14 +16,14 @@ while True:
     contador = 1
     termo_lista = []
     while True:
-        exibeLista(termo_lista, partida)
+        exibePartida(termo_lista, partida)
         usr_input_palavra = pergunta('')
         jogada = jogo(usr_input_palavra, termo_palavra)
         termo_lista.append(jogada)
         if usr_input_palavra == termo_palavra or contador == 6:
             break
         contador += 1
-    exibeLista(termo_lista, partida)
+    exibePartida(termo_lista, partida)
     if contador == 6:
         mostrar(f'A palavra era {termo_palavra} :(', '~')
     else:
