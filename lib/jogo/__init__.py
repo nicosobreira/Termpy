@@ -5,10 +5,17 @@ from lib.formatação import cores
 
 def geradorTermo():
     from random import choice
+    from bancoDados.termos import TERMOS
+    
+    
+    def diretórioAtual():
+        import os
 
-    PALAVRAS = ("BANCO", "SAGAZ", "EXITO", "SENSO", "AFETO", "ALGOZ",
-                "ETICA", "PLENA", "MUTUA", "TENUE", "FAZER")
-    return choice(PALAVRAS)
+        diretório_atual = os.getcwd()
+        return str(diretório_atual)
+
+
+    return choice(TERMOS)
 
 
 def jogo(usr_palavra, termo_palavra):

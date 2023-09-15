@@ -14,6 +14,15 @@ def pergunta(texto=''):
             return usr_input
 
 
+def exibeLista(lista, partida):
+    limpaTerminal()
+    mostrar(f' -- Termpy, {partida}ª partida --', '~', 30)
+
+    for índex, elemento in enumerate(lista):
+        índex += 1
+        print(f'{elemento} - {índex}')
+
+
 def linha(tipo_linha='-', tamanho_linha=30):
     return tipo_linha * tamanho_linha
 
@@ -28,15 +37,15 @@ def mostrar(texto='', tipo='-', tamanho=30):
 def cores(texto, cor):
     CORES = {
         'Normal': '\033[m',
-        'Verde': '\033[33m',
-        'Amarelo': '\033[32m',
+        'Verde': '\033[32m',
+        'Amarelo': '\033[33m',
         'Vermelho': '\033[31m'
     }
 
     return f"{CORES[cor]}{texto} {CORES['Normal']}"
 
 
-def limparTerminal():
+def limpaTerminal():
     import os
 
     if os.name == 'posix':  # Para sistemas Unix/Linux/Mac

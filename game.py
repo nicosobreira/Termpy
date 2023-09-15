@@ -15,16 +15,14 @@ while True:
     contador = 1
     termo_lista = []
     while True:
-        limparTerminal()
-        mostrar(f' -- Termpy, {partida}ª partida --', '~', 30)
-        for palavra in termo_lista:
-            print(f'{palavra}')
+        exibeLista(termo_lista, partida)
         usr_input_palavra = pergunta('')
         jogada = jogo(usr_input_palavra, termo_palavra)
         termo_lista.append(jogada)
         if usr_input_palavra == termo_palavra or contador == 6:
             break
         contador += 1
+    exibeLista(termo_lista, partida)
     if contador == 6:
         mostrar(f'A palavra era {termo_palavra} :(', '~')
     else:
@@ -37,5 +35,5 @@ while True:
     if continuação == 'S':
         break
 
-limparTerminal()
+limpaTerminal()
 mostrar('Volte Sempre!', '-', 30)
