@@ -1,4 +1,4 @@
-from libAnalisador.pastas import *
+from lib.pastas import *
 
 
 def main():
@@ -6,7 +6,7 @@ def main():
     formatado_caminho = formatadoPergunta()
 
     with open(bancoDados_caminho, 'r') as bancoDados_arquivo, open(formatado_caminho, 'a+') as formatado_arquivo:  # r+ -> r
-        formatado_arquivo.write('ANALISADOS = (')
+        formatado_arquivo.write('TERMOS = (')
 
         bancoDados_LINHAS = bancoDados_arquivo.readlines()
         bancoDados_TERMOS = []

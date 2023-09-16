@@ -1,18 +1,5 @@
 # Formatação - ~/Termpy/formatação/__init__.py
 
-def palavrasCaps(palavras):
-    for p in palavras:
-        print(f'"{p.upper()}", ', end='')
-
-
-def pergunta(texto=''):
-    while True:
-        usr_input = str(input(texto)).upper()
-        if len(usr_input) != 5:
-            print(cores('ERRO! 5 dígitos apenas', 'Vermelho'))
-        else:
-            return usr_input
-
 
 def exibePartida(lista, partida):
     limpaTerminal()
@@ -66,7 +53,15 @@ def tutorial():
     print(' - ' + cores('Meio Certo', 'Amarelo'))
     print(' - ' + cores('Errado', 'Vermelho'))
     print(linha_str)
-    sleep(1.5)
+    sleep(1)
+
+
+def continuação(caminho):
+    while True:
+        print('Esse é o caminho: ' + caminho)
+        continuação = str(input('Deseja continuar? [S/N] '))
+        if continuação in 'Ss':
+            return True
 
 
 """

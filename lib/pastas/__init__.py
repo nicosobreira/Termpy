@@ -1,4 +1,4 @@
-from libAnalisador.strings import *
+from lib.strings import cores, continuação
 
 
 def diretórioAtual():
@@ -10,7 +10,7 @@ def diretórioAtual():
 
 def bancoDadosUsuário():
     while True:
-        bancoDados_caminho = diretórioAtual() + "/oAnalisador/bancoDados/"
+        bancoDados_caminho = diretórioAtual() + "/dados/bancoDados/"
         bancoDados_arquivo = str(input('Qual é o arquivo da Base de Dados? '))
         bancoDados_caminho += bancoDados_arquivo
 
@@ -22,7 +22,7 @@ def bancoDadosUsuário():
 
 def formatadoPergunta():
     while True:
-        formatado_caminho = diretórioAtual() + '/oAnalisador/formatado/'
+        formatado_caminho = diretórioAtual() + '/dados/formatado/'
         formatado_arquivo = str(input('Qual é o nome do arquivo final? '))
         formatado_caminho += formatado_arquivo
 
@@ -31,6 +31,6 @@ def formatadoPergunta():
         if cont == True:
             with open(formatado_caminho, 'w') as formatado:
                 formatado.write(
-                    '# Arquivo criado/editado usando oAnalisador\n\n')
+                    '# Arquivo criado/editado usando o analisador\n\n')
             print()
             return formatado_caminho
