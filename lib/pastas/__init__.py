@@ -1,4 +1,4 @@
-from lib.strings import cores, continuação
+from lib.strings import cores
 
 
 def diretórioAtual():
@@ -6,6 +6,14 @@ def diretórioAtual():
 
     diretório_atual = os.getcwd()
     return str(diretório_atual)
+
+
+def continuação(caminho):
+    while True:
+        print('Esse é o caminho: ' + caminho)
+        continuação = str(input('Deseja continuar? [S/N] '))
+        if continuação in 'Ss':
+            return True
 
 
 def bancoDadosUsuário():

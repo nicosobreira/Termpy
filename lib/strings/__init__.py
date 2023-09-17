@@ -44,26 +44,6 @@ def limpaTerminal():
         pass
 
 
-def tutorial():
-    from time import sleep
-
-    linha_str = linha('-')
-    print(linha_str)
-    print(' - ' + cores('Correto', 'Verde'))
-    print(' - ' + cores('Meio Certo', 'Amarelo'))
-    print(' - ' + cores('Errado', 'Vermelho'))
-    print(linha_str)
-    sleep(1)
-
-
-def continuação(caminho):
-    while True:
-        print('Esse é o caminho: ' + caminho)
-        continuação = str(input('Deseja continuar? [S/N] '))
-        if continuação in 'Ss':
-            return True
-
-
 """
 def removeAcento(texto):
     ACENTOS = {

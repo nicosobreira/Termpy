@@ -14,19 +14,20 @@ def escolhaIdioma():
                 print()
             else:
                 print(', ', end='')
-        idiomaUsuário = str(input('>>> Sua opção: '))
-        if idiomaUsuário in IDIOMAS:
+        idioma_usuário = str(input('>>> Sua opção: '))
+        if idioma_usuário in IDIOMAS:
             break
         else:
             print(cores('Digite um valor válido', 'Vermelho'))
+    
+    return str(idioma_usuário)
 
-    return str(idiomaUsuário)
 
-
-def geradorTermo(idioma):
+def geradorTermo(idioma_usuário):
     from random import choice
     import importlib.util
     
+    idioma = f'{idioma_usuário}_termos.py'
     caminho = f'{diretórioAtual()}/dados/formatado/{idioma}'
     
     # Usa o importlib.util.spec_from_file_location
@@ -64,4 +65,5 @@ def jogoResultado(usr_palavra, termo_palavra):
         usr_termo_list.append(letra_cor)
     print()
     usr_termo_str = ' '.join(usr_termo_list)
+    print(type(jogoResultado))
     return usr_termo_str
