@@ -3,35 +3,15 @@
 from lib.strings import cores
 from lib.pastas import diretórioAtual
 
-def escolhaIdioma():
-    IDIOMAS = ('pt_br', 'en')
-
-    while True:
-        print('Escolha um dos idiomas: ')
-        for idioma in IDIOMAS:
-            print(f'{cores(idioma, "Azul")}', end='')
-            if idioma == IDIOMAS[-1]:
-                print()
-            else:
-                print(', ', end='')
-        idioma_usuário = str(input('>>> Sua opção: '))
-        if idioma_usuário in IDIOMAS:
-            break
-        else:
-            print(cores('Digite um valor válido', 'Vermelho'))
-    
-    return str(idioma_usuário)
-
 
 def geradorTermo(idioma_usuário):
     from random import choice
     import importlib.util
-    
+
     idioma = f'{idioma_usuário}_termos.py'
     caminho = f'{diretórioAtual()}/dados/formatado/{idioma}'
-    
-    # Usa o importlib.util.spec_from_file_location
-    # para criar um novo módulo
+
+    # Usa o importlib.util.spec_from_file_location para criar um novo módulo
     spec = importlib.util.spec_from_file_location(idioma, caminho)
     modulo = importlib.util.module_from_spec(spec)
 
@@ -43,11 +23,11 @@ def geradorTermo(idioma_usuário):
 
 def perguntaTermo(texto=''):
     while True:
-        usr_input = str(input(texto)).upper()
-        if len(usr_input) != 5:
+        usr_termo = str(input(texto)).upper()
+        if len(usr_termo) != 5:
             print(cores('ERRO! 5 dígitos apenas', 'Vermelho'))
         else:
-            return usr_input
+            return usr_termo
 
 
 def jogoResultado(usr_palavra, termo_palavra):
@@ -65,5 +45,5 @@ def jogoResultado(usr_palavra, termo_palavra):
         usr_termo_list.append(letra_cor)
     print()
     usr_termo_str = ' '.join(usr_termo_list)
-    print(type(jogoResultado))
+    ## print(type(jogoResultado)) ##
     return usr_termo_str
