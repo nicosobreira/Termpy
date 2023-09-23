@@ -4,12 +4,14 @@ from lib.strings import cores
 from lib.pastas import diretórioAtual
 
 
-def geradorTermo(idioma_usuário):
+def geradorTermo():
+    from data.config import Idioma
+
     from random import choice
     import importlib.util
 
-    idioma = f'{idioma_usuário}_termos.py'
-    caminho = f'{diretórioAtual()}/dados/formatado/{idioma}'
+    idioma = f'{Idioma}_termos.py'
+    caminho = f'{diretórioAtual()}/data/formatado/{idioma}'
 
     # Usa o importlib.util.spec_from_file_location para criar um novo módulo
     spec = importlib.util.spec_from_file_location(idioma, caminho)
@@ -30,12 +32,12 @@ def perguntaTermo(texto=''):
             return usr_termo
 
 
-def jogoResultado(usr_palavra, termo_palavra):
+def jogoResultadoLista(usr_termo, termo_geradorTermo):
     usr_termo_list = []
 
-    for índex, letra in enumerate(usr_palavra):
-        if letra in termo_palavra:
-            if índex == termo_palavra.find(letra):
+    for índex, letra in enumerate(usr_termo):
+        if letra in termo_geradorTermo:
+            if índex == termo_geradorTermo.find(letra):
                 letra_cor = cores(letra, 'Verde')
             else:
                 letra_cor = cores(letra, 'Amarelo')
@@ -45,5 +47,15 @@ def jogoResultado(usr_palavra, termo_palavra):
         usr_termo_list.append(letra_cor)
     print()
     usr_termo_str = ' '.join(usr_termo_list)
-    ## print(type(jogoResultado)) ##
     return usr_termo_str
+
+
+def exibePartida(jogo_lista):
+    from lib.strings import limpaTerminal, mostrar
+
+    limpaTerminal()
+    mostrar(f' -- Termpy, Termo --', '~', 30)
+
+    for índex, elemento in enumerate(jogo_lista):
+        índex += 1
+        print(f'{elemento} - {cores(índex, "Azul")}')

@@ -1,5 +1,4 @@
 from lib.strings import *
-from lib.jogo import *
 
 
 def tutorial():
@@ -15,58 +14,32 @@ def tutorial():
     sleep(1)
 
 
-def novoJogo(idioma_usuário):
-    tutorial()
+def novoJogo():
+    from data.config import Modo
+    from lib.modos import termoJogo, duetoJogo
 
-    contador = 1
-    termo_lista = []
-    termo_palavra = geradorTermo(idioma_usuário)
-    print(idioma_usuário)
-    while True:
-        exibePartida(termo_lista)
-        usr_input_palavra = perguntaTermo('')
-        jogada = jogoResultado(usr_input_palavra, termo_palavra)
-        termo_lista.append(jogada)
-        if usr_input_palavra == termo_palavra or contador == 6:
-            break
-        contador += 1
-    exibePartida(termo_lista)
-
-    if contador == 6:
-        mostrar(f'A palavra era {termo_palavra} :(', '~')
-    else:
-        mostrar(f'{contador}º jogada :)', '~')
-
-
-def mudarModo():
-    pass
+    if Modo == 'termo':
+        termoJogo()
+    elif Modo == 'dueto':
+        duetoJogo()
 
 
 def novoIdioma():
-    from dados.config import Idioma
-
-    limpaTerminal()
-    
+    from data.config import Idioma
     IDIOMAS = ('pt_br', 'en')
 
+    limpaTerminal()
+
     while True:
+        limpaTerminal()
         print('Escolha um dos idiomas: ')
-        for idioma in IDIOMAS:
-            print(f'{cores(idioma, "Azul")}', end='')
-            if idioma == IDIOMAS[-1]:
-                print()
-            else:
-                print(', ', end='')
-        idioma_novo = str(input('>>> Sua opção: '))
-        if idioma_novo in IDIOMAS:
-            Idioma = idioma_novo
+        exibeTupla(IDIOMAS)
+        novo_idioma = str(input('>>> Sua opção: '))
+        if novo_idioma in IDIOMAS:
+            Idioma = novo_idioma
             return Idioma
         else:
             print(cores('Digite um valor válido', 'Vermelho'))
-
-
-def mudarTema():
-    pass
 
 
 def sair():

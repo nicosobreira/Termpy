@@ -1,0 +1,1 @@
+Idioma = 'pt_br'

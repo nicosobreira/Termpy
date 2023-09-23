@@ -18,7 +18,7 @@ def continuação(caminho):
 
 def bancoDadosUsuário():
     while True:
-        bancoDados_caminho = diretórioAtual() + "/dados/bancoDados/"
+        bancoDados_caminho = diretórioAtual() + "/data/bancoDados/"
         bancoDados_arquivo = str(input('Qual é o arquivo da Base de Dados? '))
         bancoDados_caminho += bancoDados_arquivo
 
@@ -30,7 +30,7 @@ def bancoDadosUsuário():
 
 def formatadoPergunta():
     while True:
-        formatado_caminho = diretórioAtual() + '/dados/formatado/'
+        formatado_caminho = diretórioAtual() + '/data/formatado/'
         formatado_arquivo = str(input('Qual é o nome do arquivo final? '))
         formatado_caminho += formatado_arquivo
 

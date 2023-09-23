@@ -1,35 +1,27 @@
 from lib.menu import *
-import dados.config as config
+import data.config as config
 
 def perguntaMenu():
-    opçõesPossíveis = ('N', 'M', 'I', 'T', 'S')
+    OPÇÕES = ('N', 'I', 'S')
 
+    limpaTerminal()
     while True:
         mostrar(f'''Você deseja...
-Nn - Nova partida
-Mm - Trocar de Modo ["{config.Modo}"] (Ainda Fazer)
-Ii - Novo Idioma ["{config.Idioma}"]
-Tt - Trocar de Tema ["{config.Tema}"] (Ainda Fazer)
-Ss - Sair''')
+N - Nova partida
+I - Novo Idioma ["{config.Idioma}"]
+S - Sair''')
         opção_usuário = str(input('>>> Sua opção: ')).upper()
-        if opção_usuário in opçõesPossíveis:
+        if opção_usuário in OPÇÕES:
             return opção_usuário
 
 
 def menu(opçãoUsuário):
-    match opçãoUsuário:
-        case 'N':  # Novo Jogo
-            novoJogo(config.Idioma)
-        case 'M':  # Mudar modo de jogo
-            print(config.Modo)
-        case 'I':  # Novo Idioma
-            idioma_usuário = novoIdioma()
-            config.Idioma = idioma_usuário
-            novoJogo(config.Idioma)
-        case 'T':  # Troca de Tema
-            print(config.Tema)
-        case 'S':  # Sair
-            sair()
+    if opçãoUsuário == 'N':
+        novoJogo()
+    elif opçãoUsuário == 'I':
+        config.Idioma = novoIdioma()
+    elif opçãoUsuário == 'S':
+        sair()
 
 
 while True:

@@ -1,15 +1,6 @@
 # Formatação - ~/Termpy/formatação/__init__.py
 
 
-def exibePartida(lista):
-    limpaTerminal()
-    mostrar(f' -- Termpy --', '~', 30)
-
-    for índex, elemento in enumerate(lista):
-        índex += 1
-        print(f'{elemento} - {cores(índex, "Azul")}')
-
-
 def linha(tipo_linha='-', tamanho_linha=30):
     return tipo_linha * tamanho_linha
 
@@ -45,3 +36,12 @@ def limpaTerminal():
         system('cls')
     else:
         pass
+
+
+def exibeTupla(tupla):
+    for elemento in tupla:
+        print(f'{cores(elemento, "Azul")}', end='')
+        if elemento == tupla[-1]:
+            print()
+        else:
+            print(', ', end='')
