@@ -1,1 +1,1 @@
-Idioma = 'pt_br'
+Idioma = 'pt_br_termos.txt'

@@ -1,33 +1,42 @@
-# Jogo - ~/Termpy/jogo/__init__.py
+from lib.strings import *
 
-from lib.strings import cores
-from lib.pastas import diretórioAtual
+
+def termoJogo():
+    partida = 1
+    jogo_lista = []
+    termo_gerador = geradorTermo()
+    while True:
+        exibePartida(jogo_lista)
+        usr_termo_input = perguntaTermo('')
+        jogo_lista.append(jogoResultadoLista(usr_termo_input, termo_gerador))
+        if usr_termo_input == termo_gerador:
+            exibePartida(jogo_lista)
+            mostrarTexto(f'Acertou na {partida}ª jogada :)', '~')
+            break
+        elif partida == 6:
+            exibePartida(jogo_lista)
+            mostrarTexto(f'A palavra era {termo_gerador} :(', '~')
+            break
+        partida += 1
 
 
 def geradorTermo():
     from data.config import Idioma
-
     from random import choice
-    import importlib.util
+    from lib.pastas import diretórioAtual
 
-    idioma = f'{Idioma}_termos.py'
-    caminho = f'{diretórioAtual()}/data/formatado/{idioma}'
+    termo_caminho = diretórioAtual() + '/data/formatado/' + Idioma
+    with open(termo_caminho, 'r') as termos_arquivo:
+        TERMOS = termos_arquivo.readlines()
 
-    # Usa o importlib.util.spec_from_file_location para criar um novo módulo
-    spec = importlib.util.spec_from_file_location(idioma, caminho)
-    modulo = importlib.util.module_from_spec(spec)
-
-    # Carrega o módulo
-    spec.loader.exec_module(modulo)
-
-    return choice(modulo.TERMOS)
+    return choice(TERMOS)
 
 
 def perguntaTermo(texto=''):
     while True:
         usr_termo = str(input(texto)).upper()
         if len(usr_termo) != 5:
-            print(cores('ERRO! 5 dígitos apenas', 'Vermelho'))
+            errorMensagem('5 dígitos apenas')
         else:
             return usr_termo
 
@@ -38,11 +47,11 @@ def jogoResultadoLista(usr_termo, termo_geradorTermo):
     for índex, letra in enumerate(usr_termo):
         if letra in termo_geradorTermo:
             if índex == termo_geradorTermo.find(letra):
-                letra_cor = cores(letra, 'Verde')
+                letra_cor = coloreTexto(letra, 'Verde')
             else:
-                letra_cor = cores(letra, 'Amarelo')
+                letra_cor = coloreTexto(letra, 'Amarelo')
         else:
-            letra_cor = cores(letra, 'Vermelho')
+            letra_cor = coloreTexto(letra, 'Vermelho')
         print(letra_cor, end='')
         usr_termo_list.append(letra_cor)
     print()
@@ -51,11 +60,8 @@ def jogoResultadoLista(usr_termo, termo_geradorTermo):
 
 
 def exibePartida(jogo_lista):
-    from lib.strings import limpaTerminal, mostrar
+    from lib.strings import limpaTerminal, mostrarTexto
 
     limpaTerminal()
-    mostrar(f' -- Termpy, Termo --', '~', 30)
-
-    for índex, elemento in enumerate(jogo_lista):
-        índex += 1
-        print(f'{elemento} - {cores(índex, "Azul")}')
+    mostrarTexto(f' -- Termpy --', '~')
+    mostraLista(jogo_lista)

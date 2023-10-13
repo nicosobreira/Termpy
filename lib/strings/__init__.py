@@ -1,18 +1,29 @@
 # Formatação - ~/Termpy/formatação/__init__.py
 
 
+def errorMensagem(mensagem):
+    mensagem = f'ERROR! {mensagem}'
+    mostrarTexto(coloreTexto(mensagem, 'Vermelho'))
+
+
 def linha(tipo_linha='-', tamanho_linha=30):
-    return tipo_linha * tamanho_linha
+    print(tipo_linha * tamanho_linha)
 
 
-def mostrar(texto='', tipo='-', tamanho=30):
-    linha_ver = linha(tipo, tamanho)
-    print(linha_ver)
-    print(texto.center(tamanho))
-    print(linha_ver)
+def mostrarTexto(texto, tipo='-', tamanho=30):
+    if len(texto) > tamanho and tamanho == 30:
+        custom_tamanho = len(texto) + 2
+        linha(tipo, custom_tamanho)
+        print(texto.center(custom_tamanho))
+        linha(tipo, custom_tamanho)
+    else:
+        linha(tipo, tamanho)
+        print(texto.center(tamanho))
+        linha(tipo, tamanho)
 
 
-def cores(texto, cor):
+
+def coloreTexto(texto, cor='Normal'):
     CORES = {
         'Normal': '\033[m',
         'Verde': '\033[32m',
@@ -23,7 +34,7 @@ def cores(texto, cor):
         'Ciano': '\033[36m',
         'Cinza': '\033[37m'
     }
-
+    cor = cor.capitalize()
     return f"{CORES[cor]}{texto}{CORES['Normal']}"
 
 
@@ -38,10 +49,6 @@ def limpaTerminal():
         pass
 
 
-def exibeTupla(tupla):
-    for elemento in tupla:
-        print(f'{cores(elemento, "Azul")}', end='')
-        if elemento == tupla[-1]:
-            print()
-        else:
-            print(', ', end='')
+def mostraLista(lista):
+    for índex, elemento in enumerate(lista):
+        print(f'{índex + 1} - {coloreTexto(elemento, "Azul")}')
