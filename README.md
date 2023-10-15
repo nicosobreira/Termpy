@@ -15,5 +15,7 @@ Apenas execute o arquivo `Termpy.py`! Sem nenhuma dependência necessária!
 |nos|nós|
 ---
 2. Depois coloque o banco de dados em */data/bancoDados/*
-3. Execute o arquivo `analisador.py`, siga as instruções e **pronto**!
+3. Execute o arquivo `analisador.py` e siga as instruções.
+4. Quando estiver no jogo selecione a opção *Trocar Idioma*, apertando **I**
+5. Selecione o arquivo e **pronto**!
 > Banco de dados tratados usando o `analisador.py`
